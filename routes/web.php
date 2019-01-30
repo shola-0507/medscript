@@ -24,6 +24,8 @@ Route::group(array('prefix' => 'roles'), function() {
 
 Route::group(array('prefix' => 'staff', 'middleware' => 'auth'), function() {
 	Route::get('/index', 'StaffController@index')->name('staff.index');
+	Route::get('/create', 'StaffController@create')->name('staff.create');
+	Route::post('/store', 'StaffController@store')->name('staff.store');
 	Route::get('/{user}/delete', 'StaffController@destroy')->name('staff.delete');
 	Route::get('/{user}/edit', 'StaffController@edit')->name('staff.edit');
 	Route::post('/{user}/update', 'StaffController@update')->name('staff.update');

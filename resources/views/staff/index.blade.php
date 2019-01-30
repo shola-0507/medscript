@@ -8,6 +8,7 @@
                 <div class="panel-heading text-center">
                     <a href="{{ route('staff.index') }}">All Users</a>
                     <div class="dropdown pull-right">
+                        <a href="{{ route('staff.create') }}">+ Add Users</a>
                         <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">
                             Filter By Role
                         <span class="caret"></span></button>

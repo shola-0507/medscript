@@ -21,6 +21,30 @@ class StaffController extends Controller
     	]);
     }
 
+    public function create() {
+        return view('staff.create', ['roles' => Role::all()]);
+    }
+
+    public function store() {
+        request()->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required|integer',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        User::create([
+            'firstname' => request('firstname'),
+            'lastname' => request('lastname'),
+            'email' => request('email'),
+            'role_id' => request('role'),
+            'password' => bcrypt(request('password'))
+        ]);
+
+        return redirect('/staff/index')->with('status', 'User Information Added');
+    }
+
     public function edit(User $user) {
     	return view('staff.edit', ['user' => $user, 'roles' => Role::all()]);
     }
